@@ -20,5 +20,7 @@
 - Testing
 - Credits
 - Code used
-- Content
+- [Content](#content)
 - Acknowledgements
+## Content
+- The seahorse logo image was provided by [unsplash.com](https:unsplash.com/s/photos/seahorse)
