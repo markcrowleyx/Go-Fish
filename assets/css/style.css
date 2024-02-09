@@ -1,14 +1,37 @@
 
+/* Override browser default styles */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 
 body {
     background-color: #00008b;
     color:#2f4f4f;
     text-align: center;
+    min-width: none;
 }
 
 .heading {
     text-align: center;
-    font-size: 180%;
+    font-size: 100%;
+    display: flex;
+    justify-content: center;
+    line-height: 40px;
+    min-width: none;
+}
+
+#left{
+    
+    width: 40px;
+    height: 40px;
+}
+
+#right{
+    
+    width: 40px;
+    height: 40px;
 }
 
 /* Menu bar layout */
@@ -17,6 +40,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 #menu-bar>button{
@@ -29,6 +53,22 @@ body {
 .game-area {
     box-sizing: border-box;
     width: 100%;
-    height: 75vh;
+    height: 40vh;
     text-align: center;
+        
+}
+
+#user-name{
+    text-align: center;
+}
+
+.button-box{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.button-box button{
+    height: 30px;
+    width: 18%;
 }
