@@ -24,3 +24,4 @@
 - Acknowledgements
 ## Content
 - The seahorse logo image was provided by [unsplash.com](https:unsplash.com/s/photos/seahorse)
+- All of the images used for the cards and for the background are from [Adobe Stock](https://stock.adobe.com/ie/)
