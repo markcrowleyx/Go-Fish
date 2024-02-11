@@ -11,7 +11,7 @@ body {
     color: #2f4f4f;
     text-align: center;
     min-height: 100vh;
-    width: 100%;
+    width: 100vw;
     background: url(/assets/images/background-2.png) no-repeat center center/cover;
 }
 
@@ -62,11 +62,23 @@ body {
     text-align: center;
 }
 
+.fish-pool.catch-box {
+    width: 100%;
+    float: none;
+}
+
 /* Fish-pool grid layout. This is where all of the cards to be flipped are displayed*/
 .fish-pool {
     display: grid;
-    grid-template-columns: repeat(3, 140px);
-    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(59.5px,4fr));    
+    row-gap: 10px;
+    column-gap: 10px;
+    width: 100%;
+}
+
+.fish-pool img {
+    max-width: 100%;
+    height: auto;
 }
 
 .button-box{
