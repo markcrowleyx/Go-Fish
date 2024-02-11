@@ -62,6 +62,13 @@ body {
     text-align: center;
 }
 
+/* Fish-pool layout. This is where all of the cards to be flipped are displayed*/
+.fish-pool {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
 .button-box{
     width: 100%;
     display: flex;
