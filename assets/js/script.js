@@ -33,12 +33,14 @@ let allFish = [
     "/assets/images/wrasse.png",
 ];
 
-
+//Select 8 random images from allFish, and duplicate them.
+let someFish = allFish.sort(() => .5 - Math.random()).slice(0, 8);//This is the Fisher Yates algorith for randomly shuffling items in an array.
+poolFish = someFish.concat(someFish).sort(() => .5 - Math.Random());
 
 // Display images from allFish array in fish-pool area
 function dealCards() {
     let fishPool = document.getElementsByClassName("fish-pool")[0];
-    allFish.forEach(image => {
+    poolFish.forEach(image => {
         let img = document.createElement('img');
         img.src = image;
         fishPool.appendChild(img);

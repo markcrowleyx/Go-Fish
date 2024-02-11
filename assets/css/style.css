@@ -62,10 +62,10 @@ body {
     text-align: center;
 }
 
-/* Fish-pool layout. This is where all of the cards to be flipped are displayed*/
+/* Fish-pool grid layout. This is where all of the cards to be flipped are displayed*/
 .fish-pool {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 140px);
     grid-gap: 10px;
 }
 
