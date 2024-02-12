@@ -33,17 +33,36 @@ let allFish = [
     "/assets/images/wrasse.png",
 ];
 
-//Select 8 random images from allFish, and duplicate them.
-let someFish = allFish.sort(() => .5 - Math.random()).slice(0, 8);//This is the Fisher Yates algorith for randomly shuffling items in an array.
-poolFish = someFish.concat(someFish).sort(() => .5 - Math.Random());
+//Select 8 random images from allFish.
+let someFish = allFish.sort(() =>0.5 - Math.random()).slice(0, 8);//This is the Fisher Yates algorith for randomly shuffling items in an array.
+
+// Convert the array of url's into an array of images
+let someFishPictures = someFish.map(url => {
+    let img = new Image();
+    img.src = url;
+    return img;
+});
+
+let poolFish = someFishPictures.concat(someFishPictures).sort(() => 0.5 - Math.random());
 
 // Display images from allFish array in fish-pool area
 function dealCards() {
     let fishPool = document.getElementsByClassName("fish-pool")[0];
-    poolFish.forEach(image => {
+    for(let fish of poolFish{
+        const fishCardElement = document.createElement("div");
+        fishCardElement.classList.add("fish-card");
+        fishCardElement.innerHTML = `
+        <div class= "front">
+        <img class = "fish-image" src="${fish.src}"/>
+        </div>
+        <div class="back"></div>
+        `;
+        fishPool.appendChild(fishCardElement);
+    }
+    /*poolFish.forEach(image => {
         let img = document.createElement('img');
         img.src = image;
         fishPool.appendChild(img);
     })
-}
+}*/
 dealCards();
