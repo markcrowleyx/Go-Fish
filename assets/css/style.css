@@ -76,10 +76,23 @@ body {
     width: 100%;
 }
 
-.fish-pool img {
+.fish-card {
+    position: relative;
+}
+
+.fish-image{
+    width: 100%;
+}
+
+.front,.back{
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+/*.fish-pool img {
     max-width: 100%;
     height: auto;
-}
+}*/
 
 .button-box{
     width: 100%;
