@@ -81,17 +81,17 @@ body {
 }
 
 .fish-card {
-    position: relative;
-    width: 68.2px;
-    height: 40.54px;
-    box-sizing: border-box;
+    align-items: center;border-radius: 8px;
+    background: #ffffff;
     border: 1px solid #ff0000;
+    box-sizing: border-box;
+    display: flex;
+    height: 40.54px;
+    justify-content: center;
     margin: 1px 1px;
     overflow: hidden;
-    background: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;    
+    position: relative;
+    width: 68.2px;    
 }
 
 .fish-image{
