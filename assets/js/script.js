@@ -37,6 +37,8 @@ let allFish = [
 let someFish = allFish.sort(() =>0.5 - Math.random()).slice(0, 9);//This is the Fisher Yates algorithm.
 let poolFish = someFish.concat(someFish).sort(() => 0.5 - Math.random());
 
+// convert the array of URL's into an array of images
+
 // Display images from allFish array in fish-pool area
 function dealCards() {
     let fishPool = document.getElementsByClassName("fish-pool")[0];
@@ -52,5 +54,9 @@ function dealCards() {
         fishPool.appendChild(fishCardElement);
     }
 }
-
 dealCards();
+
+
+
+
+// Function to flip each fishCard on clicking it
