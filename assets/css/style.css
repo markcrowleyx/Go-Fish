@@ -11,7 +11,8 @@ body {
     color: #2f4f4f;
     text-align: center;
     min-height: 100vh;
-    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
     background: url(/assets/images/background-2.png) no-repeat center center/cover;
     
 }
@@ -87,10 +88,10 @@ body {
     border: 1px solid #ff0000;
     margin: 1px 1px;
     overflow: hidden;
-    background: #008000;
+    background: #ffffff;
     display: flex;
     justify-content: center;
-    
+    align-items: center;    
 }
 
 .fish-image{
