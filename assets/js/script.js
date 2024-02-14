@@ -2,7 +2,7 @@ let allFish = [
     {"image": "assets/images/albacore-tuna.png", "name": "Alabcore-Tuna", "alt": "Albacore-Tuna"},
     { "image": "assets/images/bass.png", "name": "Bass", "alt": "Bass" },
     { "image": "assets/images/blue-shark.png", "name": "Blue-Shark", "alt": "Blue-Shark" },
-    { "image": "assets/images/bluefin-Tuna.png", "name": "Bluefin-Tuna", "alt": "Bluefin-Tuna" },
+    { "image": "assets/images/bluefin-tuna.png", "name": "Bluefin-Tuna", "alt": "Bluefin-Tuna" },
     { "image": "assets/images/bream.png", "name": "Bream", "alt": "Bream" },
     { "image": "assets/images/brill.png", "name": "Brill", "alt": "Brill" },
     { "image": "assets/images/coalfish.png", "name": "Coalfish", "alt": "Coalfish" },
@@ -39,7 +39,6 @@ let someFish = allFish.sort(() => 0.5 - Math.random()).slice(0, 9);//This is the
 // Duplicate each image and then shuffle again.
 let poolFish = someFish.concat(someFish).sort(() => 0.5 - Math.random());
 
-// convert the array of URL's into an array of images
 
 // Display images from allFish array in fish-pool area
 function dealCards() {
@@ -51,7 +50,7 @@ function dealCards() {
         <div class= "front">
         <img class = "fish-image" src="${fish.image}" alt="${fish.alt}"/>
         </div>
-        <div class="back"></div>
+        <div class="back"> <img "assets/images/hook.png"> </div>
         `;
         fishPool.appendChild(fishCardElement);
         fishCardElement.addEventListener('click', function () { console.log(this) });
