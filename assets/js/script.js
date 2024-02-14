@@ -34,7 +34,9 @@ let allFish = [
 ];
 
 //Select 8 random images from allFish.
-let someFish = allFish.sort(() =>0.5 - Math.random()).slice(0, 9);//This is the Fisher Yates algorithm.
+let someFish = allFish.sort(() => 0.5 - Math.random()).slice(0, 9);//This is the Fisher Yates algorithm.
+
+// Duplicate each image and then shuffle again.
 let poolFish = someFish.concat(someFish).sort(() => 0.5 - Math.random());
 
 // convert the array of URL's into an array of images
@@ -42,18 +44,21 @@ let poolFish = someFish.concat(someFish).sort(() => 0.5 - Math.random());
 // Display images from allFish array in fish-pool area
 function dealCards() {
     let fishPool = document.getElementsByClassName("fish-pool")[0];
-    for (let fish of poolFish){
+    for (let fish of poolFish) {
         const fishCardElement = document.createElement("div");
         fishCardElement.classList.add("fish-card");
-        fishCardElement.innerHTML = `
+        fishCardElement.innerHTML = `        
         <div class= "front">
         <img class = "fish-image" src="${fish}"/>
         </div>
         <div class="back"></div>
         `;
         fishPool.appendChild(fishCardElement);
+
     }
 }
+
+
 dealCards();
 
 

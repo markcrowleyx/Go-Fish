@@ -22,7 +22,8 @@ body {
     font-size: 100%;
     display: flex;
     justify-content: center;
-    line-height: 40px;    
+    line-height: 40px;
+    color: darkblue;    
 }
 
 #left{
@@ -47,8 +48,12 @@ body {
 
 #menu-bar>button{
     height: 40px;
-    width: 30%;
-    text-align: center;    
+    width: 60px;
+    text-align: center;
+    border-radius: 8px;
+    margin: 0 8px;
+    background-color: #ffff00;
+    border-color: #ff0000;    
 }
 
 /* game-area layout */
@@ -80,6 +85,13 @@ body {
     
 }
 
+.fish-box {
+    width: 68.2px;
+    height: 40.54px;
+    perspective: 200px;
+    
+}
+
 .fish-card {
     align-items: center;border-radius: 8px;
     background: #ffffff;
@@ -92,6 +104,9 @@ body {
     overflow: hidden;
     position: relative;
     width: 68.2px;    
+}
+.front{
+    
 }
 
 .fish-image{
@@ -121,10 +136,16 @@ body {
     display: flex;
     justify-content: center;
     position: absolute;
+    align-items: center;
     bottom: 0;
 }
 
 .button-box button{
     height: 30px;
-    width: 18%;
+    width: 50px;    
+    text-align: center;
+    border-radius: 8px;
+    margin: 0 8px;
+    background-color: #ffff00;
+    border-color: #ff0000;
 }
