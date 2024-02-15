@@ -46,29 +46,23 @@ function dealCards() {
     for (let fish of poolFish) {
         const fishCardElement = document.createElement("div");
         fishCardElement.classList.add("fish-card");
-        fishCardElement.innerHTML = `        
+        fishCardElement.innerHTML = `
+        <div class ="fish-card-content" onclick="this.classList.add('open');")>        
         <div class= "front">
         <img class = "fish-image" src="${fish.image}" alt="${fish.alt}"/>
         </div>
         <div class="back"></div>
+        </div>
         `;
         fishPool.appendChild(fishCardElement);
-        /*fishCardElement.addEventListener('click', function () { console.log(this) });*/
-        /*fishCardElement.addEventListener('click', function(){this.classListAdd("open")})*/
-        fishCardElement.addEventListener("click", show);
-        
+        /*fishCardElement.addEventListener("click", show);*/       
 
     }
 }
 
-
 dealCards();
-function show() {
-    this.classList.add("open");
-    /*this.classList.remove("flip-back");
-    this.classList.add("flip-front");*/
-}
-
-
 
 // Function to flip each fishCard on clicking it
+/*function show() {
+    this.classList.add("open");
+}*/
