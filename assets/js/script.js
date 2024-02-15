@@ -1,5 +1,5 @@
 let allFish = [
-    {"image": "assets/images/albacore-tuna.png", "name": "Alabcore-Tuna", "alt": "Albacore-Tuna"},
+    { "image": "assets/images/albacore-tuna.png", "name": "Alabcore-Tuna", "alt": "Albacore-Tuna"},
     { "image": "assets/images/bass.png", "name": "Bass", "alt": "Bass" },
     { "image": "assets/images/blue-shark.png", "name": "Blue-Shark", "alt": "Blue-Shark" },
     { "image": "assets/images/bluefin-tuna.png", "name": "Bluefin-Tuna", "alt": "Bluefin-Tuna" },
@@ -50,17 +50,24 @@ function dealCards() {
         <div class= "front">
         <img class = "fish-image" src="${fish.image}" alt="${fish.alt}"/>
         </div>
-        <div class="back"> <img "assets/images/hook.png"> </div>
+        <div class="back"></div>
         `;
         fishPool.appendChild(fishCardElement);
-        fishCardElement.addEventListener('click', function () { console.log(this) });
+        /*fishCardElement.addEventListener('click', function () { console.log(this) });*/
+        /*fishCardElement.addEventListener('click', function(){this.classListAdd("open")})*/
+        fishCardElement.addEventListener("click", show);
+        
 
     }
 }
 
 
 dealCards();
-
+function show() {
+    this.classList.add("open");
+    /*this.classList.remove("flip-back");
+    this.classList.add("flip-front");*/
+}
 
 
 
