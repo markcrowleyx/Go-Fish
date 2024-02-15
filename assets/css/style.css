@@ -25,7 +25,7 @@ body {
     line-height: 40px;
     color: darkblue;    
 }
-
+/* Style the seahorse logos */
 #left{
     width: 40px;
     height: 40px;
@@ -91,7 +91,7 @@ body {
     perspective: 200px;
     
 }
-
+/* Style the fish-cards*/
 .fish-card {
     align-items: center;border-radius: 8px;
     background: #ffffff;
@@ -103,10 +103,17 @@ body {
     margin: 1px 1px;
     overflow: hidden;
     position: relative;
-    width: 68.2px;    
+    width: 68.2px;
+    transform-style: preserve-3d;
+    transition: all 1s ease-in-out;    
 }
-.front{
+.fish-card .front{
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
 .fish-image{
@@ -116,8 +123,13 @@ body {
     display: cover;
 }
 
-.back{
+.fish-card .back{
     background-image: url("/assets/images/hook.png");
+    background-size: contain;
+    backface-visibility: hidden;
+    background-position: center center;
+    width: 100%;
+    height: 100%;
 }
 
 .front,.back{
@@ -130,6 +142,22 @@ body {
     height: auto;
 }
 
+.fish-card.open{
+    transform: rotateY(180deg);
+}
+
+/*.fish-card .front{
+    transform: rotateY(180deg);
+}*/
+
+.fish-card.flip-front{
+    transform: rotateY(0deg);
+}
+
+.fish-card.flip-back {
+    transform: rotateY(180deg);
+}
+/* The game buttons at the bottom of the screen*/
 .button-box{
     width: 100%;
     height: 40px;
