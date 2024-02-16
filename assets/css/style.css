@@ -91,57 +91,69 @@ body {
     perspective: 200px;
     
 }
+
 /* Style the fish-cards*/
 .fish-card {
-    /*align-items: center;*/
-    /*border-radius: 8px;*/
-    /*background: #ffffff;
-    border: 1px solid #ff0000;
-    box-sizing: border-box;*/
-    /*display: flex;*/
+    border-radius: 8px;
     height: 40.54px;
     justify-content: center;
     margin: 1px 1px;
     overflow: hidden;
     position: relative;
     width: 68.2px;
-    /*transform-style: preserve-3d;
-    transition: all 1s ease-in-out;*/
-    perspective: 800;    
+    perspective: 800;
+      
 }
 
+.fish-card-content{
+    background: #ffff;
+    border: solid 1px #ff0000;
+    border-radius: 8px;
+}
 .fish-card .fish-card-content.open{
     transform: rotateY(180deg);
 }
-.fish-card .fish-card-content .front{
+
+.fish-card .fish-card-content{
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: 0.5s;
+    border-radius: 8px;
+    }
+
+.fish-card .fish-card-content .face{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+    backface-visibility: hidden;
+   }
+.fish-card .fish-card-content .front {
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
+    transform: rotateY(180deg);
 }
-
 .fish-image{
     object-fit:cover;
     width: 100%;
     height: 100%;
     display: cover;
+    border-radius: 8px;
 }
 
 .fish-card .fish-card-content .back{
     background-image: url("/assets/images/hook.png");
     background-size: contain;
-    /*backface-visibility: hidden;*/
     background-position: center center;
     width: 100%;
     height: 100%;
-    /*transform: rotateY(180deg);*/
-}
-
-.front,.back{
-    position: absolute;
-    /*backface-visibility: hidden;*/
+    transform: rotateY(0deg);
+    border-radius: 8px;
 }
 
 .fish-pool img {
@@ -152,12 +164,6 @@ body {
 .fish-card.open{
     transform: rotateY(180deg);
 }
-
-/*.fish-card .front{
-    transform: rotateY(180deg);
-}*/
-
-
 
 /* The game buttons at the bottom of the screen*/
 .button-box{
