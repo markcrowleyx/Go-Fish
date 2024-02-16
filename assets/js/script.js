@@ -48,10 +48,10 @@ function dealCards() {
         fishCardElement.classList.add("fish-card");
         fishCardElement.innerHTML = `
         <div class ="fish-card-content" onclick="this.classList.add('open');")>        
-        <div class= "front">
+        <div class= "face front">
         <img class = "fish-image" src="${fish.image}" alt="${fish.alt}"/>
         </div>
-        <div class="back"></div>
+        <div class="face back"></div>
         </div>
         `;
         fishPool.appendChild(fishCardElement);
