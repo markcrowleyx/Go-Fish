@@ -26,6 +26,7 @@
 - This game was developed using the 'Mobile-First' methodology.
 ## Code used
 - The concept used for flipping the cards in this game was taken from a tutorial on [W3 Schools](https://www.w3schools.com/howto/howto_css_flip_card.asp) 
+- The Modal image was inspired by a [Tutorial](https://www.w3schools.com/howto/howto_css_modal_images.asp) on W3 Schools. 
 ## Content
 - The seahorse logo image was provided by [unsplash.com](https:unsplash.com/s/photos/seahorse)
 - All of the images used for the cards and for the background are from [Adobe Stock](https://stock.adobe.com/ie/)
