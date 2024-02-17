@@ -7,8 +7,7 @@
 }
 
 body {
-    background-color: #00008b;
-    color: #2f4f4f;
+    background-color: #00008b;    
     text-align: center;
     min-height: 100vh;
     max-width: 100%;
@@ -52,8 +51,22 @@ body {
     text-align: center;
     border-radius: 8px;
     margin: 0 8px;
-    background-color: #ffff00;
+    background-color: #adff2f;
     border-color: #ff0000;    
+}
+
+#user-name{
+    text-align: center;
+    padding-bottom: 5px;
+}
+
+/* Score board */
+.tally {
+    background-color: #adff2f;    
+    border:solid 1px #ff0000;
+    width: 30%;
+    border-radius: 8px;
+    
 }
 
 /* game-area layout */
@@ -65,10 +78,7 @@ body {
     justify-content: center;
     flex-direction: column;
 }
-#user-name{
-    text-align: center;
-    padding-bottom: 5px;
-}
+
 
 .fish-pool, .catch-box {
     width: 100%;
@@ -182,6 +192,6 @@ body {
     text-align: center;
     border-radius: 8px;
     margin: 0 8px;
-    background-color: #ffff00;
+    background-color: #adff2f;
     border-color: #ff0000;
 }
