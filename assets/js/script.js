@@ -59,9 +59,7 @@ function dealCards() {
         <div class="face back"></div>
         </div>
         `;
-        fishPool.appendChild(fishCardElement);
-
-        
+        fishPool.appendChild(fishCardElement);       
 
     }
 }
@@ -72,10 +70,14 @@ dealCards();
 cards = document.getElementsByClassName("fish-card-content");
 Array.from(cards).forEach(card => {
     card.addEventListener("click", flipCard)
-})
+});
 
 // Function to flip each fishCard on clicking it
     function flipCard() {    
-    this.classList.add("open");   
-}
+        this.classList.add("open")
+        let cardId = this.querySelector(".fish-image").getAttribute("data-name");
+        console.log(cardId);
+        
+        
+};
 
