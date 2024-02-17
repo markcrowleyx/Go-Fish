@@ -59,8 +59,7 @@ function dealCards() {
         <div class="face back"></div>
         </div>
         `;
-        fishPool.appendChild(fishCardElement);       
-
+        fishPool.appendChild(fishCardElement);      
     }
 }
 
@@ -77,7 +76,13 @@ Array.from(cards).forEach(card => {
         this.classList.add("open")
         let cardId = this.querySelector(".fish-image").getAttribute("data-name");
         console.log(cardId);
-        
-        
+        fishNames.push(cardId);
+        /*setTimeout(CheckIfPair,500);*/
 };
 
+//Function to check if the cards match
+function checkIfPair() {
+    if (fishNames[0] === fishNames[1]) {
+        catchCount += 1;
+    }
+}
