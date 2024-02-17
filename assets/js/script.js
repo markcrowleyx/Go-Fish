@@ -1,5 +1,5 @@
 let fishNames = [];
-
+let cards;
 
 let matchingPairs = [];
 let catchCount = [];
@@ -52,21 +52,15 @@ function dealCards() {
         const fishCardElement = document.createElement("div");
         fishCardElement.classList.add("fish-card");
         fishCardElement.innerHTML = `
-        <div class ="fish-card-content" onclick = ("flipCard()") >
-        <div class= "face front">
-        <img class = "fish-image" src="${fish.image}" alt="${fish.alt}"/>
+        <div class ="fish-card-content" >
+        <div class= "face front" >
+        <img class = "fish-image" src="${fish.image}" alt="${fish.alt}" data-name="${fish.name}"/>
         </div>
         <div class="face back"></div>
         </div>
         `;
         fishPool.appendChild(fishCardElement);
-        /*fishCardElement.addEventListener("click", show);*/
-        /*let allCards = document.getElementsByClassName("fish-card-content");
-        allCards.addEventListener("click", show)*/
-        /*let fishCardContent = document.getElementsByClassName("fish-card-content");*/
-        /*fishCardContent.addEventListener("click", flipCard);*/
-        let fishCardContent = document.getElementsByClassName("fish-card-content");
-        fishCardContent.setAttribute("data-name", `${fish.name}`);
+
         
 
     }
@@ -74,14 +68,14 @@ function dealCards() {
 
 dealCards();
 
+// Add event listener for click function to all the fish-card-content divs
+cards = document.getElementsByClassName("fish-card-content");
+Array.from(cards).forEach(card => {
+    card.addEventListener("click", flipCard)
+})
+
 // Function to flip each fishCard on clicking it
-function flipCard() {
-    let selected = this.dataset.name;
-    fishNames.push(selected);
-    this.classList.add('open');
-    if (fishNames.length === 2) {
-        setTimeout(checkForMatch, 500);
-        console.log(`You clicked : ${selected}`);
-    }
-    
+    function flipCard() {    
+    this.classList.add("open");   
 }
+
