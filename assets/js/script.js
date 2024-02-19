@@ -1,8 +1,8 @@
 let fishNames = [];
 let cards;
-
+let firstPick, secondPick;
 let matchingPairs = [];
-let catchCount = [];
+let catchCount = 0 ;
 let allFish = [
     { "image": "assets/images/albacore-tuna.png", "name": "Alabcore-Tuna", "alt": "Albacore-Tuna"},
     { "image": "assets/images/bass.png", "name": "Bass", "alt": "Bass" },
@@ -72,17 +72,55 @@ Array.from(cards).forEach(card => {
 });
 
 // Function to flip each fishCard on clicking it
-    function flipCard() {    
-        this.classList.add("open")
+function flipCard() {
+    if (this === firstPick) return;
+    this.classList.add("open")
+    if (!firstPick) {
+        firstPick = this;
         let cardId = this.querySelector(".fish-image").getAttribute("data-name");
-        console.log(cardId);
+        if (fishNames.length === 0) {
+            fishNames.push(cardId);
+        }
+
+        return;
+    }
+    secondPick = this;
+    let cardId = this.querySelector(".fish-image").getAttribute("data-name");
+    if (fishNames.length === 1) {
         fishNames.push(cardId);
-        /*setTimeout(CheckIfPair,500);*/
+    }
+    setTimeout(checkIfPair, 500);
+    checkIfPair();
 };
 
 //Function to check if the cards match
 function checkIfPair() {
-    if (fishNames[0] === fishNames[1]) {
+    if (fishNames.length === 2 && fishNames[0] !== fishNames[1]) {
+        closeCards();
+        fishNames = [];
+        /*document.querySelector("tallyBoard").textContent = catchCount;*/
+    } else if (fishNames.length === 2 && fishNames[0] === fishNames[1]) {
         catchCount += 1;
-    }
+        console.log(fishNames);
+        matchingPairs.push(fishNames[0]);
+        console.log(matchingPairs);
+        fishNames = [];
+        resetCards();
+    }    
+
+}
+//Function to close the cards again
+function closeCards() {
+    setTimeout(() => {
+        firstPick.classList.remove("open");
+        secondPick.classList.remove("open");
+        resetCards();
+    }, 1000
+    );
+}
+ 
+// Function to reset the cards
+function resetCards() {
+    firstPick = null;
+    secondPick = null;
 }
