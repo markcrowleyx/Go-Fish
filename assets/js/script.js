@@ -65,6 +65,10 @@ function dealCards() {
 
 dealCards();
 
+// Add event listener to the deal button
+dealButton = document.getElementById("deal");
+dealButton.addEventListener("click", dealCards);
+
 // Add event listener for click function to all the fish-card-content divs
 cards = document.getElementsByClassName("fish-card-content");
 Array.from(cards).forEach(card => {
