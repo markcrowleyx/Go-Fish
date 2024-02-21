@@ -1,3 +1,5 @@
+
+
 let fishNames = [];
 let cards;
 let firstPick, secondPick;
@@ -49,7 +51,7 @@ let poolFish = someFish.concat(someFish).sort(() => 0.5 - Math.random());
 function dealCards() {
     let fishPool = document.getElementsByClassName("fish-pool")[0];
     for (let fish of poolFish) {
-        const fishCardElement = document.createElement("div");
+        let fishCardElement = document.createElement("div");
         fishCardElement.classList.add("fish-card");
         fishCardElement.innerHTML = `
         <div class ="fish-card-content" >
@@ -61,19 +63,26 @@ function dealCards() {
         `;
         fishPool.appendChild(fishCardElement);      
     }
+    // Add event listener for click function to all the fish-card-content divs
+    cards = document.getElementsByClassName("fish-card-content");
+    Array.from(cards).forEach(card => {
+        card.addEventListener("click", flipCard)
+    });
 }
 
 dealCards();
 
-// Add event listener to the deal button
+// Add event listeners to the deal button 
 dealButton = document.getElementById("deal");
+dealButton.addEventListener("click", clearDeck)
 dealButton.addEventListener("click", dealCards);
 
-// Add event listener for click function to all the fish-card-content divs
-cards = document.getElementsByClassName("fish-card-content");
-Array.from(cards).forEach(card => {
-    card.addEventListener("click", flipCard)
-});
+function clearDeck() {
+
+    document.getElementsByClassName("fish-pool")[0].innerHTML = "";
+}
+
+
 
 // Function to flip each fishCard on clicking it
 function flipCard() {
@@ -110,9 +119,9 @@ function checkIfPair() {
         console.log(matchingPairs);
         fishNames = [];
         resetCards();
-    }    
-
+    }  
 }
+
 //Function to close the cards again
 function closeCards() {
     setTimeout(() => {
