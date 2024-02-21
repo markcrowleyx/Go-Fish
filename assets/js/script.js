@@ -82,8 +82,6 @@ function clearDeck() {
     document.getElementsByClassName("fish-pool")[0].innerHTML = "";
 }
 
-
-
 // Function to flip each fishCard on clicking it
 function flipCard() {
     if (this === firstPick) return;
@@ -114,7 +112,7 @@ function checkIfPair() {
         catchCount += 1;
         console.log(catchCount);
         console.log(fishNames);
-        /*matchingPairs.push(fishNames[0]);*/
+        
         addToMatchingPairs();
         console.log(matchingPairs);
         fishNames = [];
@@ -132,15 +130,28 @@ function closeCards() {
     );
 }
 
+// Add matched pair name to the matchingPairs array if it is not already there
 function addToMatchingPairs() {
     alreadyMatched = matchingPairs.includes(fishNames[0]);
     if (!alreadyMatched) {
         matchingPairs.push(fishNames[0]);
     }
+    reviewProgress();
 }
  
 // Function to reset the cards
 function resetCards() {
     firstPick = null;
     secondPick = null;
+}
+
+// Progress bar
+let progressBar = document.getElementById("progress");
+let progressText = document.getElementById("progress-text");
+let progress = matchingPairs.length;
+const total = 32;
+function reviewProgress() {
+    let percentage = (progress / total) * 100;
+    progressBar.style.width = `${percentage}%`;
+    progressText.textContent = `${progress}/${total}`;
 }
