@@ -4,7 +4,7 @@ let fishNames = [];
 let cards;
 let firstPick, secondPick;
 let matchingPairs = [];
-let catchCount = 0 ;
+/*let catchCount = 0 ;*/
 let allFish = [
     { "image": "assets/images/albacore-tuna.png", "name": "Alabcore-Tuna", "alt": "Albacore-Tuna"},
     { "image": "assets/images/bass.png", "name": "Bass", "alt": "Bass" },
@@ -109,7 +109,7 @@ function checkIfPair() {
         closeCards();
         fishNames = [];        
     } else if (fishNames.length === 2 && fishNames[0] === fishNames[1]) {
-        catchCount += 1;
+        /*catchCount += 1;*/
         /*console.log(catchCount);*/
         
         
@@ -150,10 +150,11 @@ function resetCards() {
 // Progress bar
 let progressBar = document.getElementById("progress");
 let progressText = document.getElementById("progress-text");
-
+let tally = document.getElementsByClassName("tallyBoard")[0];
 const total = 32;
 function reviewProgress() {
     let percentage = (matchingPairs.length/ total) * 100;
     progressBar.style.width = `${percentage}%`;
     progressText.textContent = `${matchingPairs.length}/${total}`;
+    tally.textContent = `${matchingPairs.length}`;
 }
