@@ -79,7 +79,6 @@ dealButton.addEventListener("click", clearDeck)
 dealButton.addEventListener("click", dealCards);
 
 function clearDeck() {
-
     document.getElementsByClassName("fish-pool")[0].innerHTML = "";
 }
 
