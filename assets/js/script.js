@@ -81,7 +81,6 @@ function flipCard() {
         if (fishNames.length === 0) {
             fishNames.push(cardId);
         }
-
         return;
     }
     secondPick = this;
@@ -97,12 +96,13 @@ function flipCard() {
 function checkIfPair() {
     if (fishNames.length === 2 && fishNames[0] !== fishNames[1]) {
         closeCards();
-        fishNames = [];
-        /*document.querySelector("tallyBoard").textContent = catchCount;*/
+        fishNames = [];        
     } else if (fishNames.length === 2 && fishNames[0] === fishNames[1]) {
         catchCount += 1;
+        console.log(catchCount);
         console.log(fishNames);
-        matchingPairs.push(fishNames[0]);
+        /*matchingPairs.push(fishNames[0]);*/
+        addToMatchingPairs();
         console.log(matchingPairs);
         fishNames = [];
         resetCards();
@@ -117,6 +117,13 @@ function closeCards() {
         resetCards();
     }, 1000
     );
+}
+
+function addToMatchingPairs() {
+    alreadyMatched = matchingPairs.includes(fishNames[0]);
+    if (!alreadyMatched) {
+        matchingPairs.push(fishNames[0]);
+    }
 }
  
 // Function to reset the cards
