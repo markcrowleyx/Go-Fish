@@ -110,12 +110,14 @@ function checkIfPair() {
         fishNames = [];        
     } else if (fishNames.length === 2 && fishNames[0] === fishNames[1]) {
         catchCount += 1;
-        console.log(catchCount);
-        console.log(fishNames);
+        /*console.log(catchCount);*/
+        
         
         addToMatchingPairs();
         console.log(matchingPairs);
+        console.log(matchingPairs.length);
         fishNames = [];
+        
         resetCards();
     }  
 }
@@ -148,10 +150,10 @@ function resetCards() {
 // Progress bar
 let progressBar = document.getElementById("progress");
 let progressText = document.getElementById("progress-text");
-let progress = matchingPairs.length;
+
 const total = 32;
 function reviewProgress() {
-    let percentage = (progress / total) * 100;
+    let percentage = (matchingPairs.length/ total) * 100;
     progressBar.style.width = `${percentage}%`;
-    progressText.textContent = `${progress}/${total}`;
+    progressText.textContent = `${matchingPairs.length}/${total}`;
 }
