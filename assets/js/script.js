@@ -100,8 +100,25 @@ function flipCard() {
         fishNames.push(cardId);
     }
     setTimeout(checkIfPair, 500);
-    checkIfPair();
-};
+    checkIfPair();    
+}
+    
+
+
+// Function to display the image of the matched pair in the catch-box div
+function displayMatchingPair() {
+    let catchBox = document.getElementById("catch-box");
+    catchBox.innerHTML = "";
+    for (let fish of matchingPairs) {
+        let matchedFishImage = document.createElement("img");
+        let matchedFish = allFish.find(f => f.name === fish);
+        matchedFishImage.src = matchedFish.image;
+        matchedFishImage.alt = matchedFish.alt;
+        catchBox.appendChild(matchedFishImage);
+    }
+}
+
+    
 
 //Function to check if the cards match
 function checkIfPair() {
@@ -110,8 +127,7 @@ function checkIfPair() {
         fishNames = [];        
     } else if (fishNames.length === 2 && fishNames[0] === fishNames[1]) {
         /*catchCount += 1;*/
-        /*console.log(catchCount);*/
-        
+        /*console.log(catchCount);*/       
         
         addToMatchingPairs();
         console.log(matchingPairs);
