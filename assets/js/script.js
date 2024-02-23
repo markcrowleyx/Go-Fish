@@ -102,25 +102,21 @@ function flipCard() {
     setTimeout(checkIfPair, 500);
     checkIfPair();    
 }
-    
+
+// Function to display the image of the matched pair in the catch-box div    
 let matchedFishImage = document.createElement("img");
 
-// Function to display the image of the matched pair in the catch-box div
 function displayMatchingPair() {
     let picture = document.getElementById("picture");
     picture.innerHTML = "";
     matchedFishImage.remove();
-    if (matchingPairs.length > 0) {
-        let lastMatchedFish = matchingPairs[matchingPairs.length - 1];
-        let matchedFish = allFish.find(f => f.name === lastMatchedFish);
-        
-        matchedFishImage.src = matchedFish.image;
-        matchedFishImage.alt = matchedFish.alt;
-        picture.appendChild(matchedFishImage);
-    }
+    let lastMatchedFish = fishNames[1];
+    let matchedFish = allFish.find(f => f.name === lastMatchedFish);
+    matchedFishImage.src = matchedFish.image;
+    matchedFishImage.alt = matchedFish.alt;
+    picture.appendChild(matchedFishImage);
 }
-
-    
+   
 
 //Function to check if the cards match
 function checkIfPair() {
@@ -129,8 +125,8 @@ function checkIfPair() {
         fishNames = [];        
     } else if (fishNames.length === 2 && fishNames[0] === fishNames[1]) {
         /*catchCount += 1;*/
-        /*console.log(catchCount);*/      
-      
+        /*console.log(catchCount);*/
+        displayMatchingPair();      
         addToMatchingPairs();
         console.log(matchingPairs);
         console.log(matchingPairs.length);
@@ -152,7 +148,7 @@ function closeCards() {
 
 // Add matched pair name to the matchingPairs array if it is not already there
 function addToMatchingPairs() {
-    alreadyMatched = matchingPairs.includes(fishNames[0]);
+    let alreadyMatched = matchingPairs.includes(fishNames[0]);
     if (!alreadyMatched) {
         matchingPairs.push(fishNames[0]);
         displayMatchingPair();
