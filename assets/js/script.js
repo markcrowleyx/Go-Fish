@@ -105,7 +105,7 @@ function flipCard() {
 
 // Function to display the image of the matched pair in the catch-box div    
 let matchedFishImage = document.createElement("img");
-
+let caption = document.getElementById("caption");
 function displayMatchingPair() {
     let picture = document.getElementById("picture");
     picture.innerHTML = "";
@@ -115,8 +115,8 @@ function displayMatchingPair() {
     matchedFishImage.src = matchedFish.image;
     matchedFishImage.alt = matchedFish.alt;
     picture.appendChild(matchedFishImage);
+    caption.innerText = matchedFish.name;
 }
-   
 
 //Function to check if the cards match
 function checkIfPair() {
@@ -128,12 +128,16 @@ function checkIfPair() {
         /*console.log(catchCount);*/
         displayMatchingPair();      
         addToMatchingPairs();
-        console.log(matchingPairs);
-        console.log(matchingPairs.length);
         fishNames = [];
-        
+        freezeCards();
         resetCards();
     }  
+}
+
+// Function to remove event listeners from matched pair.
+function freezeCards() {
+    firstPick.removeEventListener("click", flipCard);
+    secondPick.removeEventListener("click", flipCard);
 }
 
 //Function to close the cards again
