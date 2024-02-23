@@ -103,19 +103,20 @@ function flipCard() {
     checkIfPair();    
 }
     
-
+let matchedFishImage = document.createElement("img");
 
 // Function to display the image of the matched pair in the catch-box div
 function displayMatchingPair() {
-    let catchBox = document.getElementById("catch-box");
-    catchBox.innerHTML = "";
+    let picture = document.getElementById("picture");
+    picture.innerHTML = "";
+    matchedFishImage.remove();
     if (matchingPairs.length > 0) {
         let lastMatchedFish = matchingPairs[matchingPairs.length - 1];
         let matchedFish = allFish.find(f => f.name === lastMatchedFish);
-        let matchedFishImage = document.createElement("img");
+        
         matchedFishImage.src = matchedFish.image;
         matchedFishImage.alt = matchedFish.alt;
-        catchBox.appendChild(matchedFishImage);
+        picture.appendChild(matchedFishImage);
     }
 }
 
