@@ -76,6 +76,7 @@ body {
     background-color: #ffe4c4;
     border-radius: 8px;
     margin-bottom: 20px;
+    position: relative;
 }
 
 .progress{
@@ -83,7 +84,10 @@ body {
     background-color: #4caf50;
     border-radius: 8px;
     width: 0%;
-    transition: width 0.5s ease-in-out;    
+    transition: width 0.5s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;    
 }
 
 .progress-text{
@@ -95,7 +99,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 0 10px;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: bold;
     color: #000;
 }
@@ -226,8 +230,7 @@ body {
     justify-content: center;
     text-align: center;
     width: 100%;margin-top: 10px;
-    border-radius: 8px;
-    
+    border-radius: 8px;    
 }
 
 #picture>img {
@@ -237,6 +240,13 @@ body {
     width: 100%;
     border-radius: 8px;
     border: solid 1px #ff0000;
+}
+
+#caption {
+    background-color: #ffffff;
+    border: solid 1px #ff0000;
+    border-radius: 8px;
+    height: 70px;
 }
 /* The game buttons at the bottom of the screen*/
 .button-box{
