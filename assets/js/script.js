@@ -109,9 +109,10 @@ function flipCard() {
 function displayMatchingPair() {
     let catchBox = document.getElementById("catch-box");
     catchBox.innerHTML = "";
-    for (let fish of matchingPairs) {
+    if (matchingPairs.length > 0) {
+        let lastMatchedFish = matchingPairs[matchingPairs.length - 1];
+        let matchedFish = allFish.find(f => f.name === lastMatchedFish);
         let matchedFishImage = document.createElement("img");
-        let matchedFish = allFish.find(f => f.name === fish);
         matchedFishImage.src = matchedFish.image;
         matchedFishImage.alt = matchedFish.alt;
         catchBox.appendChild(matchedFishImage);
@@ -127,8 +128,8 @@ function checkIfPair() {
         fishNames = [];        
     } else if (fishNames.length === 2 && fishNames[0] === fishNames[1]) {
         /*catchCount += 1;*/
-        /*console.log(catchCount);*/       
-        
+        /*console.log(catchCount);*/      
+      
         addToMatchingPairs();
         console.log(matchingPairs);
         console.log(matchingPairs.length);
@@ -153,6 +154,7 @@ function addToMatchingPairs() {
     alreadyMatched = matchingPairs.includes(fishNames[0]);
     if (!alreadyMatched) {
         matchingPairs.push(fishNames[0]);
+        displayMatchingPair();
     }
     reviewProgress();
 }
@@ -168,6 +170,7 @@ let progressBar = document.getElementById("progress");
 let progressText = document.getElementById("progress-text");
 let tally = document.getElementsByClassName("tallyBoard")[0];
 const total = 32;
+
 function reviewProgress() {
     let percentage = (matchingPairs.length/ total) * 100;
     progressBar.style.width = `${percentage}%`;
