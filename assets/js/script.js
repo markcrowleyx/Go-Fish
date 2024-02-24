@@ -73,10 +73,20 @@ function dealCards() {
 
 dealCards();
 
-// Add event listeners to the deal button 
-dealButton = document.getElementById("deal");
-dealButton.addEventListener("click", clearDeck)
-dealButton.addEventListener("click", dealCards);
+// Add event listeners to ther Play button
+playButton = document.getElementById("start");
+playButton.addEventListener("click", resetTimer);
+playButton.addEventListener("click", clearDeck);
+playButton.addEventListener("click", dealCards);
+playButton.addEventListener("click", startTimer);
+
+// Add event listeners to the Pause button 
+dealButton = document.getElementById("pause");
+dealButton.addEventListener("click", pauseTimer);
+
+//Add event listener to the Resume button
+resumeButton = document.getElementById("resume");
+resumeButton.addEventListener("click", resumeTimer)
 
 function clearDeck() {
     document.getElementsByClassName("fish-pool")[0].innerHTML = "";
@@ -192,15 +202,20 @@ let time = 0;
 let interval;
 
 function startTimer() {
+    time = 0;
     interval = setInterval(function () {
         time++;
         let minutes = Math.floor(time / 60);
         let seconds = time % 60;
-        time.innerHTML = (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds < 10 ? "0" + seconds : seconds);
+        timer.innerHTML = (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds < 10 ? "0" + seconds : seconds);
     }, 1000);
 }
 
 function pauseTimer() {
+    clearInterval(interval);
+}
+
+function resetTimer() {
     clearInterval(interval);
 }
 
