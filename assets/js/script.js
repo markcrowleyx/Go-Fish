@@ -4,7 +4,7 @@ let fishNames = [];
 let cards;
 let firstPick, secondPick;
 let matchingPairs = [];
-/*let catchCount = 0 ;*/
+let catchCount = 0 ;
 let allFish = [
     { "image": "assets/images/albacore-tuna.png", "name": "Alabcore-Tuna", "alt": "Albacore-Tuna"},
     { "image": "assets/images/bass.png", "name": "Bass", "alt": "Bass" },
@@ -124,14 +124,18 @@ function checkIfPair() {
         closeCards();
         fishNames = [];        
     } else if (fishNames.length === 2 && fishNames[0] === fishNames[1]) {
-        /*catchCount += 1;*/
-        /*console.log(catchCount);*/
+        catchCount += 1;
+        console.log(catchCount);
         displayMatchingPair();      
         addToMatchingPairs();
         fishNames = [];
         freezeCards();
         resetCards();
-    }  
+    }
+    if (catchCount % 9 === 0 && matchingPairs.length > 0) {
+        clearDeck();
+        dealCards();
+    }
 }
 
 // Function to remove event listeners from matched pair.
@@ -166,6 +170,9 @@ function resetCards() {
     secondPick = null;
 }
 
+// Function to deal a new set of cards after all 9 pairs have been matched
+
+
 // Progress bar
 let progressBar = document.getElementById("progress");
 let progressText = document.getElementById("progress-text");
@@ -177,4 +184,26 @@ function reviewProgress() {
     progressBar.style.width = `${percentage}%`;
     progressText.textContent = `${matchingPairs.length}/${total}`;
     tally.textContent = `${matchingPairs.length}`;
+}
+
+// Timer section
+let timer = document.getElementById("timer");
+let time = 0;
+let interval;
+
+function startTimer() {
+    interval = setInterval(function () {
+        time++;
+        let minutes = Math.floor(time / 60);
+        let seconds = time % 60;
+        time.innerHTML = (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds < 10 ? "0" + seconds : seconds);
+    }, 1000);
+}
+
+function pauseTimer() {
+    clearInterval(interval);
+}
+
+function resumeTimer() {
+    startTimer();
 }
