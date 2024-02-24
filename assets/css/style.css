@@ -112,6 +112,7 @@ body {
     font-weight: bold;
     text-align: center;
     margin-bottom: 20px;
+    background-color: #ffffff;
 }
 
 /* game-area layout */
@@ -272,7 +273,7 @@ body {
 
 .button-box button{
     height: 30px;
-    width: 50px;    
+    width: 60px;    
     text-align: center;
     border-radius: 8px;
     margin: 0 8px;
