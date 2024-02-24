@@ -216,12 +216,12 @@ function resetCards() {
 let progressBar = document.getElementById("progress");
 let progressText = document.getElementById("progress-text");
 let tally = document.getElementsByClassName("tallyBoard")[0];
-const total = 32;
+/*const total = 32;*/
 
 function reviewProgress() {
     let percentage = (matchingPairs.length/ total) * 100;
     progressBar.style.width = `${percentage}%`;
-    progressText.textContent = `${matchingPairs.length}/${total}`;
+    progressText.textContent = `${matchingPairs.length}/${allFish.length}`;
     tally.textContent = `${matchingPairs.length}`;
 }
 
@@ -231,7 +231,8 @@ let time = 0;
 let interval;
 
 function startTimer() {
-    time = 0;
+    if (interval) return;
+
     interval = setInterval(function () {
         time++;
         let minutes = Math.floor(time / 60);
@@ -242,10 +243,13 @@ function startTimer() {
 
 function pauseTimer() {
     clearInterval(interval);
+    interval = null;
 }
 
 function resetTimer() {
     clearInterval(interval);
+    interval = null;
+    time = 0;
 }
 
 function resumeTimer() {
