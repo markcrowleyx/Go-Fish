@@ -10,7 +10,7 @@ let matchingPairs = [];
 let catchCount = 0;
 let allFish = [];
 //let someFish = [];
-let total = allFish.length;
+let total = 27;
 let fishSet = [
     { "image": "assets/images/albacore-tuna.png", "name": "Alabcore-Tuna", "alt": "Albacore-Tuna"},
     { "image": "assets/images/bass.png", "name": "Bass", "alt": "Bass" },
@@ -91,7 +91,7 @@ function dealCards() {
     });
 }
 
-//dealCards();
+dealCards();
 
 
 
@@ -169,7 +169,7 @@ function checkIfPair() {
         fishNames = [];
     } else if (fishNames.length === 2 && fishNames[0] === fishNames[1]) {
         catchCount += 1;
-        console.log("catchcount "+ catchCount);
+        console.log("catchcount " + catchCount);
         displayMatchingPair();
         addToMatchingPairs();
         console.log("FishperDeal " + fishPerDeal)
@@ -179,13 +179,11 @@ function checkIfPair() {
         resetCards();
         reviewProgress();
     }
-}
-
-    if(catchCount % fishPerDeal === 0 && matchingPairs.length > 0) {
+    if (catchCount % fishPerDeal === 0 && matchingPairs.length > 0) {
         clearDeck();
         dealCards();
     }
-
+}
 
 // Function to remove event listeners from matched pair.
 function freezeCards() {
