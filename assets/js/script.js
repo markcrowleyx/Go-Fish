@@ -1,13 +1,17 @@
-const fishPerDeal = 9
+let fishPerDeal = 9
 // Timeout in milliseconds while we check for pair
 const checkPairTimeout = 500
-//let poolFish;
-//let fishNames = [];
+let poolFish = [];
+let fishNames = [];
 let cards;
 let firstPick, secondPick;
+//let firstFish, secondFish;
 let matchingPairs = [];
-let catchCount = 0 ;
-let allFish = [
+let catchCount = 0;
+let allFish = [];
+//let someFish = [];
+let total = allFish.length;
+let fishSet = [
     { "image": "assets/images/albacore-tuna.png", "name": "Alabcore-Tuna", "alt": "Albacore-Tuna"},
     { "image": "assets/images/bass.png", "name": "Bass", "alt": "Bass" },
     { "image": "assets/images/blue-shark.png", "name": "Blue-Shark", "alt": "Blue-Shark" },
@@ -18,19 +22,19 @@ let allFish = [
     { "image": "assets/images/cod.png", "name": "Cod", "alt": "Cod" },
     { "image": "assets/images/conger-eel.png", "name": "Conger-Eel", "alt": "Conger-Eel" },
     { "image": "assets/images/dogfish.png", "name": "Dogfish", "alt": "Dogfish" },
-    { "image": "assets/images/flounder.png", "name": "Flounder", "alt": "Flounder" },
+
     { "image": "assets/images/garfish.png", "name": "Garfish", "alt": "Garfish" },
     { "image": "assets/images/haddock.png", "name": "Haddock", "alt": "Haddock" },
-    { "image": "assets/images/hake.png", "name": "Hake", "alt": "Hake" },
-    { "image": "assets/images/herring.png", "name": "Herring", "alt": "Herring" },
+
+
     { "image": "assets/images/john-dory.png", "name": "John-Dory", "alt": "John-Dory" },
-    { "image": "assets/images/ling.png", "name": "Ling", "alt": "Ling" },
+
     { "image": "assets/images/mackerel.png", "name": "Mackerel", "alt": "Mackerel" },
     { "image": "assets/images/monkfish.png", "name": "Monkfish", "alt": "Monkfish" },
     { "image": "assets/images/mullet.png", "name": "Mullet", "alt": "Mullet" },
     { "image": "assets/images/octopus.png", "name": "Octopus", "alt": "Octopus" },
     { "image": "assets/images/plaice.png", "name": "Plaice", "alt": "Plaice" },
-    { "image": "assets/images/pollock.png", "name": "Pollock", "alt": "Pollock" },
+
     { "image": "assets/images/porbeagle-shark.png", "name": "Porbeagle-Shark", "alt": "Porbeagle-Shark" },
     { "image": "assets/images/red-gurnard.png", "name": "Red-Gurnard", "alt": "Red-Gurnard" },
     { "image": "assets/images/red-mullet.png", "name": "Red-Mullet", "alt": "Red-Mullet" },
@@ -42,14 +46,34 @@ let allFish = [
     { "image": "assets/images/wrasse.png", "name": "Wrasse", "alt": "Wrasse" }
 ];
 
+
 //Select random images from allFish.
 function getCards() {
-    let someFish = allFish.sort(() => 0.5 - Math.random()).slice(0, 9);//This is the Fisher Yates algorithm.
+    allFish = fishSet;
+    let someFish = allFish.sort(() => 0.5 - Math.random()).splice(0, fishPerDeal);//This is the Fisher Yates algorithm.
     // Duplicate each image and then shuffle again.
     poolFish = someFish.concat(someFish).sort(() => 0.5 - Math.random());
 }
 
-const fishCardTemplate = `
+/*const fishCardTemplate = `
+        <div class ="fish-card-content" >
+        <div class= "face front" >
+        <img class = "fish-image" src="${fish.image}" alt="${fish.alt}" data-name="${fish.name}"/>
+        </div>
+        <div class="face back"></div>
+        </div>
+        `;*/
+
+/**
+ *  Display images from fish list in fish-pool area
+ */
+function dealCards() {
+    getCards();
+    let fishPool = document.getElementsByClassName("fish-pool")[0];
+    for (let fish of poolFish) {
+        let fishCardElement = document.createElement("div");
+        fishCardElement.classList.add("fish-card");
+        fishCardElement.innerHTML = `
         <div class ="fish-card-content" >
         <div class= "face front" >
         <img class = "fish-image" src="${fish.image}" alt="${fish.alt}" data-name="${fish.name}"/>
@@ -57,19 +81,9 @@ const fishCardTemplate = `
         <div class="face back"></div>
         </div>
         `;
-
-/**
- *  Display images from fish list in fish-pool area
- */
-function dealCards() {
-    let poolFish = getCards();
-    let fishPool = document.getElementsByClassName("fish-pool")[0];
-    for (let fish of poolFish) {
-        let fishCardElement = document.createElement("div");
-        fishCardElement.classList.add("fish-card");
-        fishCardElement.innerHTML = fishCardTemplate;
         fishPool.appendChild(fishCardElement);      
     }
+
     // Add event listener for click function to all the fish-card-content divs
     cards = document.getElementsByClassName("fish-card-content");
     Array.from(cards).forEach(card => {
@@ -77,22 +91,9 @@ function dealCards() {
     });
 }
 
-dealCards();
+//dealCards();
 
-/*Add event listeners to ther Play button
-playButton = document.getElementById("start");
-playButton.addEventListener("click", resetTimer);
-playButton.addEventListener("click", clearDeck);
-playButton.addEventListener("click", dealCards);
-playButton.addEventListener("click", startTimer);
 
-// Add event listeners to the Pause button 
-dealButton = document.getElementById("pause");
-dealButton.addEventListener("click", pauseTimer);
-
-//Add event listener to the Resume button
-resumeButton = document.getElementById("resume");
-resumeButton.addEventListener("click", resumeTimer)*/
 
 function clearDeck() {
     document.getElementsByClassName("fish-pool")[0].innerHTML = "";
@@ -113,17 +114,21 @@ function flipCard() {
     this.classList.add("open");
     if (!firstPick) {
         firstPick = this;
-        //let cardId = this.querySelector(".fish-image").getAttribute("data-name");
-        //if (fishNames.length === 0) {
-        //    fishNames.push(cardId);
-        //}
+        let cardId = this.querySelector(".fish-image").getAttribute("data-name");
+        if (fishNames.length === 0) {
+            fishNames.push(cardId);
+            console.log("ID 1" + cardId);
+            console.log("fishNames 0 " + fishNames[0]);
+        }
         return;
     }
     secondPick = this;
-    //let cardId = this.querySelector(".fish-image").getAttribute("data-name");
-    //if (fishNames.length === 1) {
-    //    fishNames.push(cardId);
-    //}
+    let cardId = this.querySelector(".fish-image").getAttribute("data-name");
+    if (fishNames.length === 1) {
+        fishNames.push(cardId);
+        console.log("ID 2 " + cardId);
+        console.log("fishNames 1 " + fishNames[1]);
+    }
     setTimeout(checkIfPair,checkPairTimeout);
     checkIfPair();    
 }
@@ -131,12 +136,13 @@ function flipCard() {
 // Function to display the image of the matched pair in the catch-box div    
 let matchedFishImage = document.createElement("img");
 let caption = document.getElementById("caption");
+
 function displayMatchingPair() {
     let picture = document.getElementById("picture");
     picture.innerHTML = "";
-    matchedFishImage.remove();
+    //matchedFishImage.remove();
     let lastMatchedFish = fishNames[1];
-    let matchedFish = allFish.find(f => f.name === lastMatchedFish);
+    let matchedFish = poolFish.find(f => f.name === lastMatchedFish);
     matchedFishImage.src = matchedFish.image;
     matchedFishImage.alt = matchedFish.alt;
     picture.appendChild(matchedFishImage);
@@ -145,37 +151,41 @@ function displayMatchingPair() {
 
 //Function to check if the cards match
 function checkIfPair() {
-    let firstFish = firstPick.querySelector(".fish-image").getAttribute("data-name");
-    let secondFish = secondPick.querySelector("fish-image").getAttribute("data-name");
+    /*firstFish = firstPick.querySelector(".fish-image").getAttribute("data-name");
+    secondFish = secondPick.querySelector(".fish-image").getAttribute("data-name");
     if (firstFish !== secondFish) {
         closeCards();
     } else {
         catchCount += 1;
         console.log(catchCount);
-        displayMatchingPair();
         addToMatchingPairs();
-        freezeCards();
-        resetCards();
-    }
-    
-/*    if (fishNames.length === 2 && fishNames[0] !== fishNames[1]) {
-        closeCards();
-        fishNames = [];        
-    } else if (fishNames.length === 2 && fishNames[0] === fishNames[1]) {
-        catchCount += 1;
-        console.log(catchCount);
-        displayMatchingPair();      
-        addToMatchingPairs();
-        fishNames = [];
+        displayMatchingPair();        
         freezeCards();
         resetCards();
     }*/
+    
+    if (fishNames.length === 2 && fishNames[0] !== fishNames[1]) {
+        closeCards();
+        fishNames = [];
+    } else if (fishNames.length === 2 && fishNames[0] === fishNames[1]) {
+        catchCount += 1;
+        console.log("catchcount "+ catchCount);
+        displayMatchingPair();
+        addToMatchingPairs();
+        console.log("FishperDeal " + fishPerDeal)
+        console.log("MP " + matchingPairs.length);
+        fishNames = [];
+        freezeCards();
+        resetCards();
+        reviewProgress();
+    }
+}
 
-    if (catchCount % fishPerDeal === 0 && matchingPairs.length > 0) {
+    if(catchCount % fishPerDeal === 0 && matchingPairs.length > 0) {
         clearDeck();
         dealCards();
     }
-}
+
 
 // Function to remove event listeners from matched pair.
 function freezeCards() {
@@ -197,7 +207,7 @@ function closeCards() {
 function addToMatchingPairs() {
     let alreadyMatched = matchingPairs.includes(fishNames[0]);
     if (!alreadyMatched) {
-        matchingPairs.push(fishNames[0]);
+        matchingPairs.push(fishNames[0]);      
         displayMatchingPair();
     }
     reviewProgress();
@@ -209,7 +219,6 @@ function resetCards() {
     secondPick = null;
 }
 
-// Function to deal a new set of cards after all 9 pairs have been matched
 
 
 // Progress bar
@@ -219,10 +228,10 @@ let tally = document.getElementsByClassName("tallyBoard")[0];
 /*const total = 32;*/
 
 function reviewProgress() {
-    let percentage = (matchingPairs.length/ total) * 100;
+    let percentage = (catchCount/ total) * 100;
     progressBar.style.width = `${percentage}%`;
-    progressText.textContent = `${matchingPairs.length}/${allFish.length}`;
-    tally.textContent = `${matchingPairs.length}`;
+    progressText.textContent = `${catchCount}/${allFish.length}`;
+    tally.textContent = `${catchCount}`;
 }
 
 // Timer section
@@ -232,7 +241,6 @@ let interval;
 
 function startTimer() {
     if (interval) return;
-
     interval = setInterval(function () {
         time++;
         let minutes = Math.floor(time / 60);
@@ -255,3 +263,20 @@ function resetTimer() {
 function resumeTimer() {
     startTimer();
 }
+
+function startGame() {
+    resetTimer();
+    clearDeck();
+    startTimer();
+    dealCards();
+}
+
+// Add event listeners to te buttons
+document.addEventListener("DOMContentLoaded", () => {
+    playButton = document.getElementById("start");
+    playButton.addEventListener("click", startGame);
+    pauseButton = document.getElementById("pause");
+    pauseButton.addEventListener("click", pauseTimer);
+    resumeButton = document.getElementById("resume");
+    resumeButton.addEventListener("click", resumeTimer);
+})
