@@ -8,7 +8,7 @@ let firstPick, secondPick;
 //let firstFish, secondFish;
 let matchingPairs = [];
 let catchCount = 0;
-let allFish = [];
+let dealCount = 0;
 //let someFish = [];
 let total = 27;
 let fishSet = [
@@ -45,11 +45,14 @@ let fishSet = [
     { "image": "assets/images/turbot.png", "name": "Turbot", "alt": "Turbot" },
     { "image": "assets/images/wrasse.png", "name": "Wrasse", "alt": "Wrasse" }
 ];
-
+let allFish = fishSet;
 
 //Select random images from allFish.
 function getCards() {
-    allFish = fishSet;
+    if (allFish.length < 9) {
+        allFish = fishSet;
+    }
+    
     let someFish = allFish.sort(() => 0.5 - Math.random()).splice(0, fishPerDeal);//This is the Fisher Yates algorithm.
     // Duplicate each image and then shuffle again.
     poolFish = someFish.concat(someFish).sort(() => 0.5 - Math.random());
@@ -89,9 +92,10 @@ function dealCards() {
     Array.from(cards).forEach(card => {
         card.addEventListener("click", flipCard)
     });
+    dealCount += 1;
 }
 
-dealCards();
+//dealCards();
 
 
 
@@ -174,12 +178,15 @@ function checkIfPair() {
         addToMatchingPairs();
         console.log("FishperDeal " + fishPerDeal)
         console.log("MP " + matchingPairs.length);
+        console.log("Deal count " + dealCount);
+        console.log("allFish length = " + allFish.length);
         fishNames = [];
         freezeCards();
         resetCards();
         reviewProgress();
     }
-    if (catchCount % fishPerDeal === 0 && matchingPairs.length > 0) {
+    
+    if (catchCount % fishPerDeal === 0 && matchingPairs.length > 0 && catchCount/dealCount === fishPerDeal) {
         clearDeck();
         dealCards();
     }
@@ -217,7 +224,24 @@ function resetCards() {
     secondPick = null;
 }
 
-
+// Function to start a new game
+function startNewGame() {
+    //Reset all game variables and elements
+    clearInterval(interval);
+    interval = null;
+    time = 0;
+    catchCount = 0;
+    dealCount = 0;
+    matchingPairs = [];
+    fishNames = [];
+    clearDeck();
+    progressBar.style.width = "0%";
+    progressText.textContent = "0/27";
+    tally.textContent = "0";
+    //Start the timer and deal new cards
+    startTimer();
+    dealCards();
+}
 
 // Progress bar
 let progressBar = document.getElementById("progress");
@@ -269,7 +293,7 @@ function startGame() {
     dealCards();
 }
 
-// Add event listeners to te buttons
+// Add event listeners to the buttons
 document.addEventListener("DOMContentLoaded", () => {
     playButton = document.getElementById("start");
     playButton.addEventListener("click", startGame);
