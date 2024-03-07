@@ -174,6 +174,13 @@ function checkIfPair() {
         freezeCards();
         resetCards();
         reviewProgress();
+
+        if (catchCount === total) {
+            pauseTimer(); //Stop the timer
+            let playerName = document.getElementById("username").value;
+            let gameTime = timer.textContent;
+            gameOver(playerName, gameTime);
+        }
     }    
     if (catchCount % fishPerDeal === 0 && matchingPairs.length > 0 && catchCount/dealCount === fishPerDeal){
         clearDeck();
@@ -213,6 +220,13 @@ function resetCards() {
     secondPick = null;
 }
 
+//Function for Game Over
+function gameOver() {
+    //Display game over message wityh player name and time
+    picture.innerHTML = `<h2>Game Over</h2>
+    <p>Congratulations, ${playerName}! You completed the game in ${gameTime}.</p>`;
+}
+
 // Function to start a new game
 function startGame() {
     //Reset all game variables and elements
@@ -239,7 +253,7 @@ function startGame() {
 let progressBar = document.getElementById("progress");
 let progressText = document.getElementById("progress-text");
 let tally = document.getElementsByClassName("tallyBoard")[0];
-/*const total = 32;*/
+
 
 function reviewProgress() {
     let percentage = (catchCount/ total) * 100;
@@ -277,13 +291,6 @@ function resetTimer() {
 function resumeTimer() {
     startTimer();
 }
-
-/*function startGame() {
-    resetTimer();
-    clearDeck();
-    startTimer();
-    dealCards();
-}*/
 
 // Add event listeners to the buttons
 document.addEventListener("DOMContentLoaded", () => {
