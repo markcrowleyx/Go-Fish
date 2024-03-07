@@ -45,14 +45,11 @@ let fishSet = [
     { "image": "assets/images/turbot.png", "name": "Turbot", "alt": "Turbot" },
     { "image": "assets/images/wrasse.png", "name": "Wrasse", "alt": "Wrasse" }
 ];
-let allFish = fishSet;
+let allFish = [...fishSet];
 
 //Select random images from allFish.
 function getCards() {
-    if (allFish.length < 9) {
-        allFish = fishSet;
-    }
-    
+    allFish = [...fishSet];    
     let someFish = allFish.sort(() => 0.5 - Math.random()).splice(0, fishPerDeal);//This is the Fisher Yates algorithm.
     // Duplicate each image and then shuffle again.
     poolFish = someFish.concat(someFish).sort(() => 0.5 - Math.random());
@@ -85,6 +82,13 @@ function dealCards() {
         </div>
         `;
         fishPool.appendChild(fishCardElement);      
+    }
+
+    // Remove existing event listeners
+    if (cards) {
+        Array.from(cards).forEach(card => {
+            card.removeEventListener("click", flipCard);
+        });
     }
 
     // Add event listener for click function to all the fish-card-content divs
@@ -140,9 +144,8 @@ function flipCard() {
 // Function to display the image of the matched pair in the catch-box div    
 let matchedFishImage = document.createElement("img");
 let caption = document.getElementById("caption");
-
-function displayMatchingPair() {
-    let picture = document.getElementById("picture");
+let picture = document.getElementById("picture");
+function displayMatchingPair() {    
     picture.innerHTML = "";
     //matchedFishImage.remove();
     let lastMatchedFish = fishNames[1];
@@ -154,20 +157,7 @@ function displayMatchingPair() {
 }
 
 //Function to check if the cards match
-function checkIfPair() {
-    /*firstFish = firstPick.querySelector(".fish-image").getAttribute("data-name");
-    secondFish = secondPick.querySelector(".fish-image").getAttribute("data-name");
-    if (firstFish !== secondFish) {
-        closeCards();
-    } else {
-        catchCount += 1;
-        console.log(catchCount);
-        addToMatchingPairs();
-        displayMatchingPair();        
-        freezeCards();
-        resetCards();
-    }*/
-    
+function checkIfPair() {    
     if (fishNames.length === 2 && fishNames[0] !== fishNames[1]) {
         closeCards();
         fishNames = [];
@@ -184,9 +174,8 @@ function checkIfPair() {
         freezeCards();
         resetCards();
         reviewProgress();
-    }
-    
-    if (catchCount % fishPerDeal === 0 && matchingPairs.length > 0 && catchCount/dealCount === fishPerDeal) {
+    }    
+    if (catchCount % fishPerDeal === 0 && matchingPairs.length > 0 && catchCount/dealCount === fishPerDeal){
         clearDeck();
         dealCards();
     }
@@ -225,19 +214,22 @@ function resetCards() {
 }
 
 // Function to start a new game
-function startNewGame() {
+function startGame() {
     //Reset all game variables and elements
-    clearInterval(interval);
-    interval = null;
-    time = 0;
+    console.log("starting new game.....");
+    resetTimer();
     catchCount = 0;
     dealCount = 0;
     matchingPairs = [];
     fishNames = [];
+    allFish = fishSet; // Resets the allFish array.
+    console.log("allFish reset to initial state: ", allFish);
     clearDeck();
     progressBar.style.width = "0%";
     progressText.textContent = "0/27";
     tally.textContent = "0";
+    picture.innerHTML = "";
+    caption.innerText = "";
     //Start the timer and deal new cards
     startTimer();
     dealCards();
@@ -286,12 +278,12 @@ function resumeTimer() {
     startTimer();
 }
 
-function startGame() {
+/*function startGame() {
     resetTimer();
     clearDeck();
     startTimer();
     dealCards();
-}
+}*/
 
 // Add event listeners to the buttons
 document.addEventListener("DOMContentLoaded", () => {
