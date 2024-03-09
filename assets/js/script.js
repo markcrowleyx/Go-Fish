@@ -274,7 +274,7 @@ let tally = document.getElementsByClassName("tallyBoard")[0];
 function reviewProgress() {
     let percentage = (catchCount/ total) * 100;
     progressBar.style.width = `${percentage}%`;
-    progressText.textContent = `${catchCount}/${allFish.length}`;
+    progressText.textContent = `${catchCount}/${fishSet.length}`;
     tally.textContent = `${catchCount}`;
 }
 
