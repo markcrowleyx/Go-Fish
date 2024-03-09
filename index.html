@@ -20,8 +20,46 @@
             <div class="tally">SCORE
                <span class="tallyBoard">0</span>
                <span class="fullTally">/27</span>
-           </div>
-        <button id="choose-game">Choose Game</button>
+           </div>        
+    </div>
+
+    <div id="how-to-play-modal" class = "modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>How To Play Go Fish</h2>
+            <h3>Objective:</h3>
+            <p>The objective of Go Fish is to match pairs of fish cards until
+                all 27 different species have been identified.
+            </p>
+            <h3>Gameplay:</h3>
+            <ol>
+                <li>Click the "Start" button to begin the game. This will
+                    shuffle and deal a set of fish cards onto the game board.
+                </li>
+                <li>Each fish card contains an image of a fish species along
+                    with its name.</li>
+                <li>To play, click on tw cards to flip them over. If the cards
+                    match, they will remain face up. If they don't match, they
+                    will flip back over.
+                </li>
+                <li>Continue flipping pairs of cards until all 27 pairs have 
+                    been matched
+                </li>
+                <li>As you correctly match pairs, you'll notice the progress
+                    bar fill up. The game automatically deals another set of
+                    cards each time you match all 9 pairs in a dealt hand.                    
+                </li>
+                <li>The game ends when all 27 pairs have been matched.</li>
+            </ol>
+            <h3>Tips</h3>
+            <ul>
+                <li>Pay attention to the names and images of the fish species
+                    to improve your memory and speed
+                </li>
+            </ul>
+
+            
+        </div>
     </div>
     <input type="text" placeholder="Enter your name" id="username">
     
@@ -37,14 +75,14 @@
         <div class="fish-pool"></div>        
         <div id="catch-box">
             <div id="picture"></div>
-            <span id="caption"></span>
+            <span id="caption" style = "height: auto";></span>
         </div>
     </section>
     <div class="button-box">
         <button id='start'>Start</button>
         <button id="pause">Pause</button>
         <button id="resume">Resume</button>
-        <button id="exit">New Game</button>
+        
     </div>
    <script src="assets/js/script.js"></script>
 </body>
