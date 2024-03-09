@@ -46,6 +46,8 @@ let fishSet = [
     { "image": "assets/images/wrasse.png", "name": "Wrasse", "alt": "Wrasse" }
 ];
 let allFish = [...fishSet];
+let playerName = document.getElementById("username").value;
+
 
 //Select random images from allFish.
 function getCards() {
@@ -157,7 +159,7 @@ function displayMatchingPair() {
 }
 
 //Function to check if the cards match
-function checkIfPair() {    
+function checkIfPair() {
     if (fishNames.length === 2 && fishNames[0] !== fishNames[1]) {
         closeCards();
         fishNames = [];
@@ -175,17 +177,22 @@ function checkIfPair() {
         resetCards();
         reviewProgress();
 
+        //Check for game over condition
         if (catchCount === total) {
             pauseTimer(); //Stop the timer
-            let playerName = document.getElementById("username").value;
+            caption.style.display = "none";
+            /*let playerName = document.getElementById("username").value;*/
             let gameTime = timer.textContent;
-            gameOver(playerName, gameTime);
+            gameOver(gameTime);
         }
-    }    
-    if (catchCount % fishPerDeal === 0 && matchingPairs.length > 0 && catchCount/dealCount === fishPerDeal){
+    }
+
+    if (catchCount % fishPerDeal === 0 && matchingPairs.length > 0 && catchCount / dealCount === fishPerDeal) {
         clearDeck();
         dealCards();
     }
+
+
 }
 
 // Function to remove event listeners from matched pair.
@@ -221,8 +228,16 @@ function resetCards() {
 }
 
 //Function for Game Over
-function gameOver() {
+function gameOver(gameTime) {
     //Display game over message wityh player name and time
+    /*let gameTime = timer.textContent;*/
+    //Retrieve the player name from the input field
+    let playerName = document.getElementById("username").value;
+    console.log("Game over function being called");
+    console.log("Picture element: ", picture);
+    console.log("Player name: ", playerName);
+    // Add the game-over class to the picture div
+    picture.classList.add("game-over");
     picture.innerHTML = `<h2>Game Over</h2>
     <p>Congratulations, ${playerName}! You completed the game in ${gameTime}.</p>`;
 }
@@ -244,6 +259,8 @@ function startGame() {
     tally.textContent = "0";
     picture.innerHTML = "";
     caption.innerText = "";
+    //Remove the game-over class from the picture div
+    picture.classList.remove("game-over");
     //Start the timer and deal new cards
     startTimer();
     dealCards();
