@@ -50,8 +50,7 @@ let playerName = document.getElementById("username").value;
 
 
 //Select random images from allFish.
-function getCards() {
-    allFish = [...fishSet];    
+function getCards() {    
     let someFish = allFish.sort(() => 0.5 - Math.random()).splice(0, fishPerDeal);//This is the Fisher Yates algorithm.
     // Duplicate each image and then shuffle again.
     poolFish = someFish.concat(someFish).sort(() => 0.5 - Math.random());
@@ -251,7 +250,7 @@ function startGame() {
     dealCount = 0;
     matchingPairs = [];
     fishNames = [];
-    allFish = fishSet; // Resets the allFish array.
+    allFish = [...fishSet]; // Resets the allFish array.
     console.log("allFish reset to initial state: ", allFish);
     clearDeck();
     progressBar.style.width = "0%";
