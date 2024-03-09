@@ -48,6 +48,34 @@ let fishSet = [
 let allFish = [...fishSet];
 let playerName = document.getElementById("username").value;
 
+/*//The Modal section
+//Get the Modal
+let modal = document.getElementById("how-to-play-modal");
+
+// Get the button that opens the modal
+let btn = document.getElementById("how-to-play");
+
+// Get the span element that closes the modal
+let span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function () {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x) , close the modal
+span.onclick = function () {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function () {
+    if (target == modal) {
+        modal.style.display = "none"; 
+    }
+}
+
+// End of modal section*/
 
 //Select random images from allFish.
 function getCards() {    
@@ -155,6 +183,8 @@ function displayMatchingPair() {
     matchedFishImage.alt = matchedFish.alt;
     picture.appendChild(matchedFishImage);
     caption.innerText = matchedFish.name;
+    //Show the caption div
+    caption.style.display = "inline-block";
 }
 
 //Function to check if the cards match
@@ -276,6 +306,12 @@ function reviewProgress() {
     progressBar.style.width = `${percentage}%`;
     progressText.textContent = `${catchCount}/${fishSet.length}`;
     tally.textContent = `${catchCount}`;
+    // Check if score is complete
+    if (catchCount === total) {
+        progressBar.classList.add("complete-progress"); // Apply the bright green color        
+    } else {
+        progressBar.classList.remove("complete-progress"); // Remove the bright green color
+    }
 }
 
 // Timer section
@@ -316,4 +352,28 @@ document.addEventListener("DOMContentLoaded", () => {
     pauseButton.addEventListener("click", pauseTimer);
     resumeButton = document.getElementById("resume");
     resumeButton.addEventListener("click", resumeTimer);
+    let modal = document.getElementById("how-to-play-modal");
+
+    // Get the button that opens the modal
+    let btn = document.getElementById("how-to-play");
+
+    // Get the <span> element that closes the modal
+    let span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    btn.addEventListener("click", function () {
+        modal.style.display = "block";
+    });
+
+    // When the user clicks on <span> (x), close the modal
+    span.addEventListener("click", function () {
+        modal.style.display = "none";
+    });
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.addEventListener("click", function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    });
 })
