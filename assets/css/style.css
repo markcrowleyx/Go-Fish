@@ -174,8 +174,11 @@ body {
 }
 
 
-.fish-pool, .catch-box {
+.fish-pool/* .catch-box*/ {
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     
 }
 
@@ -258,7 +261,7 @@ body {
     object-fit:cover;
     width: 100%;
     height: 100%;
-    display: cover;
+    display: contain;
     border-radius: 8px;
 }
 
@@ -288,7 +291,10 @@ body {
     height: 25vh;
     justify-content: center;
     text-align: center;
-    width: 100%;margin-top: 10px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
     border-radius: 8px;
     color: #ffffff; 
     flex-direction: column;   
@@ -315,7 +321,8 @@ body {
 /* Game over class to change the background of the picture div when
 the gamOver function is called.*/
 .game-over{
-    background-color: rgba(128, 128, 128, 0.5);
+    background-color: rgba(128, 128, 128, 0.7);
+    width: 50%;
 }
 /* The game buttons at the bottom of the screen*/
 .button-box{
@@ -336,4 +343,49 @@ the gamOver function is called.*/
     margin: 0 8px;
     background-color: #adff2f;
     border-color: #ff0000;
+}
+
+/* Media query for screens of 768 px and up ( tablets and larger )*/
+@media screen and (min-width: 768px) {
+
+    /* Modal */
+    .modal-content {
+        width: 50%;
+        margin: auto;
+    }
+}
+
+
+@media screen and (min-width: 768px) {
+    .fish-pool {
+        /*width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        column-count: 6;*/
+        display: grid;
+        grid-template-columns: repeat(6,1fr);
+        grid-gap: 10px;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .fish-card {
+        width: calc(8vh *1.7);
+        margin-bottom: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 8vh             
+        
+    }
+    .fish-image {
+        max-width: 100%;
+        height: auto;
+    }
+     .fish-card .fish-card-content .back {
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+     }
 }
