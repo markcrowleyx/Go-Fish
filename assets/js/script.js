@@ -268,7 +268,7 @@ function gameOver(gameTime) {
     // Add the game-over class to the picture div
     picture.classList.add("game-over");
     picture.innerHTML = `<h2>Game Over</h2>
-    <p>Congratulations, ${playerName}! You completed the game in ${gameTime}.</p>`;
+    <p>Congratulations, ${playerName}! You completed the game in</p><p>${gameTime}.</p>`;
 }
 
 // Function to start a new game
